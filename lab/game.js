@@ -40,7 +40,6 @@ Game.prototype.drawBg = function() {
     this.ctx.restore();
   }
 };
-
 Game.prototype.clear = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 };
