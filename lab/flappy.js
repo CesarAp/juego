@@ -11,29 +11,14 @@ function Flappy(canvas) {
   this.vx = 2;
   this.vy = 2;
   this.radius = 25;
+  this.yMove = 1;
   document.onkeydown = this.onKeyDown.bind(this);
   this.img.onload = function() {
   }.bind(this);
 }
 Flappy.prototype.draw = function() {
-  this.ctx.beginPath();
   this.ctx.drawImage(this.img, this.x, this.y, 100, 100);
-  this.ctx.closePath();
-};
-
-Flappy.prototype.update = function() {
-  ctx.clearRect(0,0, canvas.width, canvas.height);
-
-  this.draw();
-  // this.x = this.vx;
-  // this.vy = gravity;
-  // this.y = this.vy;
-  // if ((this.y + this.radius) > canvas.height || (this.y - this.radius) < 0) {
-  //   this.vy *= -1;
-  // }
-  // if ((this.x + this.radius) > canvas.width || (this.x - this.radius) < 0) {
-  //   this.vx *= -1;
-  // }
+  this.y += this.yMove * this.vx;
 };
 
 Flappy.prototype.onKeyDown = function(event) {
@@ -46,6 +31,11 @@ Flappy.prototype.isReady = function() {
 };
 
 Flappy.prototype.moveUp = function() {
+  this.yMove = -1;
+  setTimeout((function() {
+    this.yMove = 1;
+  }).bind(this), 3000)
+  /*
   this.vy -= gravity;
   this.y += this.vy;
   if ((this.y + this.radius) > canvas.height || (this.y - this.radius) < 0) {
@@ -54,8 +44,17 @@ Flappy.prototype.moveUp = function() {
   if ((this.x + this.radius) > canvas.width || (this.x - this.radius) < 0) {
     this.vx *= -1;
   }
+  */
+};
+  Flappy.prototype.onKeyUp = function(event) {
+    if (event.keyCode == SPACE) {
+    this.onKeyUp();
+  }
   };
 
+  Flappy.prototype.onKeyUp = function() {
+    this.vy -= gravity;
+  };
 //Flappy.prototype.onKeyDown = function(event) {
   //if (event.keyCode == SPACE) {
     //  this.push();
