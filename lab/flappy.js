@@ -1,44 +1,56 @@
-function Flappy(canvas, sprite) {
+var SPACE = 32;
+var gravity = 0.1;
+
+function Flappy(canvas) {
   this.canvas = canvas;
-  this.ctx = this.canvas.getContext('2d');
-
-  this.x = 0;
-  this.y = 0;
-  this.scale = 0.15;
-  this.speed = 10;
-
-  this.sprite = new Image();
-  this.sprite.src = sprite;
-  this.sprite.onload = (function() {
-  this.sprite.isReady = true;
-  this.sprite.hFrames = 3;
-  this.sprite.vFrames = 1;
-  this.sprite.fWidth = Math.floor(this.sprite.width / this.sprite.hFrames);
-  this.sprite.fHeight = Math.floor(this.sprite.height / this.sprite.vFrames);
-  this.sprite.hfIndex = 0;
-  this.sprite.vfIndex = 0;
-
-  this.width = this.sprite.fWidth * this.scale;
-  this.height = this.sprite.fHeight * this.scale;
-  this.ctx.drawImage(
-    this.sprite,
-    50,
-    50
-  );
-  }).bind(this);
-
-  this.isFalling = false;
-
+  this.ctx = this.canvas.getContext("2d");
+  this.img = new Image();
+  this.img.src = "images/flappy.png";
+  this.x = 200;
+  this.y = 200;
+  this.vx = 2;
+  this.vy = 2;
+  this.radius = 25;
+  this.img.onload = function() {
+  }.bind(this);
 }
 Flappy.prototype.draw = function() {
-  if (this.isReady()) {
-    this.ctx.save();
+  this.ctx.beginPath();
+  this.ctx.drawImage(this.img, this.x, this.y, 100, 100);
+  this.ctx.closePath();
+};
 
-    this.ctx.restore();
+Flappy.prototype.update = function() {
+  ctx.clearRect(0,0, canvas.width, canvas.height);
+
+  this.draw();
+  this.x += this.vx;
+
+  this.vy += gravity;
+  this.y += this.vy;
+
+
+  if ((this.y + this.radius) > canvas.height || (this.y - this.radius) < 0) {
+    this.vy *= -1;
+  }
+
+  if ((this.x + this.radius) > canvas.width || (this.x - this.radius) < 0) {
+    this.vx *= -1;
+  }
+
+};
+
+Flappy.prototype.onKeyDown = function(event) {
+  if (event.keyCode == SPACE) {
+      this.moveUp();
   }
 };
-
 Flappy.prototype.isReady = function() {
-  console.log('entro en isReady de flappy');
-  return true;
+  return this.img.isReady;
 };
+
+//Flappy.prototype.onKeyDown = function(event) {
+  //if (event.keyCode == SPACE) {
+    //  this.push();
+  //}
+//};

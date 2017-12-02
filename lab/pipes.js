@@ -1,9 +1,10 @@
 function Pipes(canvas, x, y, blocks, blockWidth, blockHeight) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
-
-  this.x = x;
-  this.y = y;
+  this.img = new Image();
+  this.img.src = "images/obstacle_bottom.png";
+  this.x = 600;
+  this.y = 300;
 
   this.blocks = blocks;
   this.width =  blockWidth * this.blocks;
