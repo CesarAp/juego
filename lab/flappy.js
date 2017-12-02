@@ -7,7 +7,7 @@ function Flappy(canvas) {
   this.img = new Image();
   this.img.src = "images/flappy.png";
   this.x = 200;
-  this.y = 500;
+  this.y = 300;
   this.vx = 2;
   this.vy = 2;
   this.radius = 25;
@@ -18,7 +18,8 @@ function Flappy(canvas) {
 }
 Flappy.prototype.draw = function() {
   this.ctx.drawImage(this.img, this.x, this.y, 100, 100);
-  this.y += this.yMove * this.vx;
+    this.y += this.yMove * this.vx;
+
 };
 
 Flappy.prototype.onKeyDown = function(event) {
@@ -34,7 +35,7 @@ Flappy.prototype.moveUp = function() {
   this.yMove = -1;
   setTimeout((function() {
     this.yMove = 1;
-  }).bind(this), 3000)
+  }).bind(this), 3000);
   /*
   this.vy -= gravity;
   this.y += this.vy;
