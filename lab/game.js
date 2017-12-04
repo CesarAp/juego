@@ -14,9 +14,12 @@ function Game(canvas) {
   this.pipes =  [];
 
 }
-//Ver slack
-//Game.prototype.position = function() {
-  //};
+//Preguntar al respecto de la posición de las pipes
+//porque aquí estoy seleccionando pero no posicionando
+Game.prototype.RandomPosition = function() {
+this.pipes.Math.floor(Math.random() * array.length);
+return (array[this.pipes]);
+  };
 
 Game.prototype.start = function() {
   setInterval(this.addPipe.bind(this), 2000);
