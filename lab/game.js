@@ -14,6 +14,9 @@ function Game(canvas) {
   this.pipes =  [];
 
 }
+//Ver slack
+//Game.prototype.position = function() {
+  //};
 
 Game.prototype.start = function() {
   setInterval(this.addPipe.bind(this), 2000);
@@ -40,20 +43,32 @@ Game.prototype.draw = function() {
   for (var i = 0; i < this.pipes.length; i++) {
     this.pipes[i].draw();
   }
-  //if colide tal tal tal
   window.requestAnimationFrame(this.draw.bind(this));
 };
 
 //He metido aqui collide pero tengo que confirmar
 // si es correcto
-Game.prototype.collide = function(element) {
-  return !(this.x + this.width < element.x ||
-    element.x + element.width < this.x ||
-    this.y + this.height < element.y ||
-    element.y + element.height < this.y);
+Game.prototype.collide = function(elements) {
+  collitions = elements.filter((function(e) {
+    return e.collide(this);
+  }).bind(this));
+
+  if (collitions.length > 0) {
+    if (collitions[0] instanceof Gap) {
+      this.isFalling = true;
+      this.fallOut();
+      setInterval(this.fallOut.bind(this), 60);
+    }
+    return true;
+  }
+  return false;
 };
-
-
+Game.prototype.fallOut = function() {
+  if (this.isFalling) {
+    this.y += this.speed;
+  }
+};
+//Hasta aquí
 window.onload = function () {
   var canvas = document.getElementById("canvas");
   var game = new Game(canvas);

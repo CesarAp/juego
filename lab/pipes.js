@@ -14,7 +14,7 @@ function Pipe(canvas, x, y, width, height) {
   this.width = width;
   this.height = height;
 }
-
+// Ver si va bien con el prototype.collide de game.js
 Pipe.prototype.collide = function(element) {
   return !(this.x + this.width < element.x ||
     element.x + element.width < this.x ||
