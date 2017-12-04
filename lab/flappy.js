@@ -47,14 +47,14 @@ Flappy.prototype.moveUp = function() {
   }
   */
 };
-  Flappy.prototype.onKeyUp = function(event) {
-    if (event.keyCode == SPACE) {
-    this.onKeyUp();
-  }
-  };
+Flappy.prototype.onKeyUp = function(event) {
+  if (event.keyCode == SPACE) {
+  this.onKeyUp();
+}
+};
 
   Flappy.prototype.onKeyUp = function() {
-    this.vy -= gravity;
+    this.vy += gravity;
   };
 //Flappy.prototype.onKeyDown = function(event) {
   //if (event.keyCode == SPACE) {

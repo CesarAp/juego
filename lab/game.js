@@ -11,24 +11,29 @@ function Game(canvas) {
       }.bind(this);
 
   this.flappy = new Flappy(this.canvas);
+  //this.pipes = new Pipes(this.canvas);
+
 }
 Game.prototype.draw = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   if(this.x > this.canvas.width) {
     this.x = 0;
   }
-
   if(this.x > 0) {
-    this.ctx.drawImage(this.img, this.x - this.img.width, this.y, this.img.width, this.img.height);
+    this.ctx.drawImage(this.img, - this.img.width + this.x, this.y, this.img.width, this.img.height);
   } else if(this.x - this.img.width > 0) {
-    this.ctx.drawImage(this.img, this.x - this.img.width * 2, this.y, this.img.width, this.img.height);
+    this.ctx.drawImage(this.img, - this.img.width * 2 + this.x, this.y, this.img.width, this.img.height);
   }
 
   this.ctx.drawImage(this.img, this.x, this.y, this.img.width, this.img.height);
   this.flappy.draw();
-  this.x -= 2;
+  this.x -= 5;
+
+  //this.pipes.draw();
   window.requestAnimationFrame(this.draw.bind(this));
 };
+
+//this.pipes.draw();
 // on load
 window.onload = function () {
   var canvas = document.getElementById("canvas");
