@@ -11,9 +11,19 @@ function Game(canvas) {
       }.bind(this);
 
   this.flappy = new Flappy(this.canvas);
-  //this.pipes = new Pipes(this.canvas);
+  this.pipes =  [];
 
 }
+
+Game.prototype.start = function() {
+  setInterval(this.addPipe.bind(this), 2000);
+  window.requestAnimationFrame(this.draw.bind(this));
+};
+
+Game.prototype.addPipe = function() {
+  console.log(this.pipes.length);
+  this.pipes.push(new Pipe(this.canvas, 0, 0, 100, 300));
+};
 Game.prototype.draw = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
   if(this.x <= 0) {
@@ -27,7 +37,10 @@ Game.prototype.draw = function() {
   this.flappy.draw();
   this.x -= 5;
 
-  //this.pipes.draw();
+  for (var i = 0; i < this.pipes.length; i++) {
+    this.pipes[i].draw();
+  }
+  //if colide tal tal tal
   window.requestAnimationFrame(this.draw.bind(this));
 };
 
@@ -36,6 +49,6 @@ Game.prototype.draw = function() {
 window.onload = function () {
   var canvas = document.getElementById("canvas");
   var game = new Game(canvas);
+  game.start();
 
-  window.requestAnimationFrame(game.draw.bind(game));
 };
