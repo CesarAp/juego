@@ -44,8 +44,16 @@ Game.prototype.draw = function() {
   window.requestAnimationFrame(this.draw.bind(this));
 };
 
-//this.pipes.draw();
-// on load
+//He metido aqui collide pero tengo que confirmar
+// si es correcto
+Game.prototype.collide = function(element) {
+  return !(this.x + this.width < element.x ||
+    element.x + element.width < this.x ||
+    this.y + this.height < element.y ||
+    element.y + element.height < this.y);
+};
+
+
 window.onload = function () {
   var canvas = document.getElementById("canvas");
   var game = new Game(canvas);
