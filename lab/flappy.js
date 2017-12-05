@@ -12,12 +12,14 @@ function Flappy(canvas) {
   this.vy = 2;
   this.radius = 25;
   this.yMove = 1;
+  this.width = 100;
+  this.height = 100;
   document.onkeydown = this.onKeyDown.bind(this);
-  this.img.onload = function() {
+    this.img.onload = function() {
   }.bind(this);
 }
 Flappy.prototype.draw = function() {
-  this.ctx.drawImage(this.img, this.x, this.y, 100, 100);
+  this.ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     this.y += this.yMove * this.vx;
 
 };
@@ -61,3 +63,20 @@ Flappy.prototype.onKeyUp = function(event) {
     //  this.push();
   //}
 //};
+
+Flappy.prototype.collide = function(elements) {
+  collitions = elements.filter((function(e) {
+    return e.collide(this);
+  }).bind(this));
+
+  if (collitions.length > 0) {
+    if (collitions[0] instanceof Gap) {
+      this.isFalling = true;
+      this.fallOut();
+      setInterval(this.fallOut.bind(this), 60);
+    }
+
+    return true;
+  }
+  return false;
+};

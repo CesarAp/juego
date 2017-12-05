@@ -13,12 +13,11 @@ this.elements = [];
 
 
 
-this.elements.push(new Pipe(canvas, 1120, 220, 2, 17, 17));
-this.elements.push(new Top(canvas, 1120, 220, 2, 17, 17));
+//this.elements.push(new Pipe(canvas, 1120, 220, 2, 17, 17));
+//this.elements.push(new Top(canvas, 1120, 220, 2, 17, 17));
 
   this.flappy = new Flappy(this.canvas);
   this.pipes =  [];
-
   this.top = [];
 
 }
@@ -38,54 +37,45 @@ Game.prototype.start = function() {
   //window.requestAnimationFrame(this.draw.bind(this));
 //};
 Game.prototype.addPipe = function() {
-  console.log(this.pipes.length);
-  this.pipes.push(new Pipe(this.canvas, 300, 50, 100, 300));
+  this.top.push(new Top(this.canvas, 500, 0, 150, 100));
+  this.pipes.push(new Pipe(this.canvas, 500, this.canvas.height - 100, 150, 100));
 };
-Game.prototype.addTop = function() {
-  console.log(this.top.length);
-  this.top.push(new Top(this.canvas, 20, 50, 100, 200));
-};
+
 Game.prototype.draw = function() {
-  this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  if(this.x <= 0) {
-    this.x = this.canvas.width;
+  if (!this.collide()) {
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    if (this.x <= 0) {
+      this.x = this.canvas.width;
+    } else if(this.x > 0) {
+      this.ctx.drawImage(this.img, - this.img.width + this.x, this.y, this.img.width, this.img.height);
+    }
+    this.ctx.drawImage(this.img, this.x, this.y, this.img.width, this.img.height);
+    this.x -= 5;
+
+    this.flappy.draw();
+
+    for (var i = 0; i < this.pipes.length; i++) {
+      this.pipes[i].draw();
+    }
+
+    for (var j = 0; j < this.top.length; j++) {
+      this.top[j].draw();
+    }
+    this.drawIntervalId = window.requestAnimationFrame(this.draw.bind(this));
+  } else {
+    // TODO Game OVEr
+    window.cancelAnimationFrame(this.drawIntervalId);
   }
 
-
-  if(this.x > 0) {
-    this.ctx.drawImage(this.img, - this.img.width + this.x, this.y, this.img.width, this.img.height);
-  }
-
-  this.ctx.drawImage(this.img, this.x, this.y, this.img.width, this.img.height);
-  this.flappy.draw();
-  this.x -= 5;
-
-  for (var i = 0; i < this.pipes.length; i++) {
-    this.pipes[i].draw();
-  }
-  for (var j = 0; i < this.top.length; i++) {
-    this.top[i].draw();
-  }
-  window.requestAnimationFrame(this.draw.bind(this));
 };
 
 //He metido aqui collide pero tengo que confirmar
 // si es correcto
-Game.prototype.collide = function(elements) {
-  collitions = elements.filter((function(e) {
-    return e.collide(this);
-  }).bind(this));
-
-  if (collitions.length > 0) {
-    if (collitions[0] instanceof Gap) {
-      this.isFalling = true;
-      this.fallOut();
-      setInterval(this.fallOut.bind(this), 60);
-    }
-    return true;
-  }
-  return false;
+Game.prototype.collide = function() {
+  return this.flappy.collide(this.top) || this.flappy.collide(this.pipes);
 };
+
 Game.prototype.fallOut = function() {
   if (this.isFalling) {
 

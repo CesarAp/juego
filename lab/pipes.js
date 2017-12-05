@@ -27,13 +27,8 @@ Pipe.prototype.draw = function() {
     this.ctx.drawImage(this.img,
       this.x,
       this.y,
-      this.img.width,
-      this.img.height);
+      this.width,
+      this.height);
   }
   this.x -= 5;
-  this.y = 550;
-
-
-
-
 };
