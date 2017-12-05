@@ -28,10 +28,6 @@ Pipe.prototype.draw = function() {
       this.x,
       this.y,
       this.img.width,
-      this.img.height,
-      this.x,
-      this.y,
-      this.width,
-      this.height);
+      this.img.height);
   }
 };

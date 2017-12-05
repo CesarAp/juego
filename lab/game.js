@@ -9,6 +9,8 @@ function Game(canvas) {
   this.img.width = this.canvas.width;
   this.img.height = this.canvas.height;
       }.bind(this);
+this.elements = [];
+this.elements.push(new Pipe(canvas, 1120, 220, 2, 17, 17));
 
   this.flappy = new Flappy(this.canvas);
   this.pipes =  [];
@@ -28,7 +30,7 @@ Game.prototype.start = function() {
 
 Game.prototype.addPipe = function() {
   console.log(this.pipes.length);
-  this.pipes.push(new Pipe(this.canvas, 0, 0, 100, 300));
+  this.pipes.push(new Pipe(this.canvas, 300, 50, 100, 300));
 };
 Game.prototype.draw = function() {
   this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
