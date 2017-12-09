@@ -1,3 +1,4 @@
+
 function Game(canvas) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext("2d");
@@ -10,10 +11,6 @@ function Game(canvas) {
   this.img.height = this.canvas.height;
       }.bind(this);
 this.elements = [];
-
-
-
-
 
   this.flappy = new Flappy(this.canvas);
   this.pipes =  [];
@@ -38,7 +35,26 @@ Game.prototype.start = function() {
 Game.prototype.addPipe = function() {
   this.top.push(new Top(this.canvas, 500, 0, 150, 300));
   this.pipes.push(new Pipe(this.canvas, 500, this.canvas.height - 100, 150, 300));
+  //for (var i = 0; i < 8; i++)
+    //  if (i != addPipe && i != addPipe + 1)
+      //    this.addPipe(400, i * 60 + 10);
 };
+
+/*
+
+addRowOfPipes: function() {
+    // Randomly pick a number between 1 and 5
+    // This will be the hole position
+    var hole = Math.floor(Math.random() * 5) + 1;
+
+    // Add the 6 pipes
+    // With one big hole at position 'hole' and 'hole + 1'
+    for (var i = 0; i < 8; i++)
+        if (i != hole && i != hole + 1)
+            this.addOnePipe(400, i * 60 + 10);
+},
+
+*/
 
 Game.prototype.draw = function() {
   if (!this.collide()) {

@@ -1,5 +1,5 @@
 var SPACE = 32;
-var W = 119;
+var W = 87;
 var gravity = 10;
 
 function Flappy(canvas) {
@@ -52,7 +52,7 @@ Flappy.prototype.moveUp = function() {
 };
 */
 Flappy.prototype.moveDown = function() {
-this.yMove = 5;
+this.yMove = 1;
 setTimeout((function() {
   this.yMove = -1;
 }).bind(this), 3000);
