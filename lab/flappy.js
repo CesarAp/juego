@@ -6,15 +6,15 @@ function Flappy(canvas) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext("2d");
   this.img = new Image();
-  this.img.src = "images/flappy.png";
+  this.img.src = "images/flappy.gif";
   this.x = 200;
   this.y = 300;
   this.vx = 2;
   this.vy = 2;
   this.radius = 25;
   this.yMove = 1;
-  this.width = 100;
-  this.height = 100;
+  this.width = 250;
+  this.height = 250;
   document.onkeydown = this.onKeyDown.bind(this);
     this.img.onload = function() {
   }.bind(this);
