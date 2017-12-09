@@ -75,11 +75,11 @@ Game.prototype.collide = function() {
   return this.flappy.collide(this.top) || this.flappy.collide(this.pipes);
 };
 
-Game.prototype.fallOut = function() {
-  if (this.isFalling) {
-    this.y += this.speed;
-  }
-};
+//Game.prototype.fallOut = function() {
+  //if (this.isFalling) {
+    //this.y += gravity;
+  //}
+//};
 
 
 window.onload = function () {

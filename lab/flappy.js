@@ -1,4 +1,5 @@
 var SPACE = 32;
+var W = 119;
 var gravity = 10;
 
 function Flappy(canvas) {
@@ -28,6 +29,8 @@ Flappy.prototype.onKeyDown = function(event) {
   if (event.keyCode == SPACE) {
       this.moveUp();
   }
+  if (event.keyCode == W)
+    this.moveDown();
 };
 Flappy.prototype.isReady = function() {
   return this.img.isReady;
@@ -38,31 +41,25 @@ Flappy.prototype.moveUp = function() {
   setTimeout((function() {
     this.yMove = 1;
   }).bind(this), 3000);
-  /*
-  this.vy -= gravity;
-  this.y += this.vy;
-  if ((this.y + this.radius) > canvas.height || (this.y - this.radius) < 0) {
-    this.vy *= -1;
-  }
-  if ((this.x + this.radius) > canvas.width || (this.x - this.radius) < 0) {
-    this.vx *= -1;
-  }
-  */
-};
-Flappy.prototype.onKeyUp = function(event) {
-  if (event.keyCode == SPACE) {
-  this.onKeyUp();
-}
+  console.log("UP");
+
 };
 
-Flappy.prototype.onKeyUp = function() {
-this.vy -= gravity;
+/*Flappy.prototype.onKeyUp = function(event) {
+  if (event.keyCode == SPACE) {
+  this.moveDown();
+}
 };
-//Flappy.prototype.onKeyDown = function(event) {
-  //if (event.keyCode == SPACE) {
-    //  this.push();
-  //}
-//};
+*/
+Flappy.prototype.moveDown = function() {
+this.yMove = 5;
+setTimeout((function() {
+  this.yMove = -1;
+}).bind(this), 3000);
+console.log("DOWN");
+
+};
+
 
 Flappy.prototype.collide = function(elements) {
   collitions = elements.filter((function(e) {
@@ -70,7 +67,7 @@ Flappy.prototype.collide = function(elements) {
   }).bind(this));
 
   if (collitions.length > 0) {
-    if (collitions[0] instanceof Gap) {
+    if (collitions[0] instanceof Flappy) {
       this.isFalling = true;
       this.fallOut();
       setInterval(this.fallOut.bind(this), 60);
