@@ -55,9 +55,9 @@ Flappy.prototype.onKeyUp = function(event) {
 }
 };
 
-  Flappy.prototype.onKeyUp = function() {
-    this.vy -= gravity;
-  };
+Flappy.prototype.onKeyUp = function() {
+this.vy -= gravity;
+};
 //Flappy.prototype.onKeyDown = function(event) {
   //if (event.keyCode == SPACE) {
     //  this.push();

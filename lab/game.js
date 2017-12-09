@@ -13,8 +13,7 @@ this.elements = [];
 
 
 
-//this.elements.push(new Pipe(canvas, 1120, 220, 2, 17, 17));
-//this.elements.push(new Top(canvas, 1120, 220, 2, 17, 17));
+
 
   this.flappy = new Flappy(this.canvas);
   this.pipes =  [];
@@ -37,8 +36,8 @@ Game.prototype.start = function() {
   //window.requestAnimationFrame(this.draw.bind(this));
 //};
 Game.prototype.addPipe = function() {
-  this.top.push(new Top(this.canvas, 500, 0, 150, 100));
-  this.pipes.push(new Pipe(this.canvas, 500, this.canvas.height - 100, 150, 100));
+  this.top.push(new Top(this.canvas, 500, 0, 150, 300));
+  this.pipes.push(new Pipe(this.canvas, 500, this.canvas.height - 100, 150, 300));
 };
 
 Game.prototype.draw = function() {
@@ -64,7 +63,7 @@ Game.prototype.draw = function() {
     }
     this.drawIntervalId = window.requestAnimationFrame(this.draw.bind(this));
   } else {
-    // TODO Game OVEr
+    //TODO Game OVEr
     window.cancelAnimationFrame(this.drawIntervalId);
   }
 
