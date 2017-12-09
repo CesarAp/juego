@@ -77,8 +77,6 @@ Game.prototype.collide = function() {
 
 Game.prototype.fallOut = function() {
   if (this.isFalling) {
-
-
     this.y += this.speed;
   }
 };
