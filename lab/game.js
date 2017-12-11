@@ -5,7 +5,7 @@ function Game(canvas) {
   this.x = this.canvas.width;
   this.y = 0;
   this.img = new Image();
-  this.img.src = "images/bg.png";
+  this.img.src = "images/bar.jpg";
   this.img.onload = function() {
   this.img.width = this.canvas.width;
   this.img.height = this.canvas.height;
@@ -34,8 +34,8 @@ Game.prototype.start = function() {
   //window.requestAnimationFrame(this.draw.bind(this));
 //};
 Game.prototype.addPipe = function() {
-  this.top.push(new Top(this.canvas, 500, 0, 150, 300));
-  this.pipes.push(new Pipe(this.canvas, 500, this.canvas.height - 100, 150, 300));
+  this.top.push(new Top(this.canvas, 500, -100, 150, 300));
+  this.pipes.push(new Pipe(this.canvas, 500, this.canvas.height - 300, 150, 500));
   //for (var i = 0; i < 8; i++)
     //  if (i != addPipe && i != addPipe + 1)
       //    this.addPipe(400, i * 60 + 10);

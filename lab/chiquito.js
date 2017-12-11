@@ -13,8 +13,8 @@ function Flappy(canvas) {
   this.vy = 2;
   this.radius = 25;
   this.yMove = 1;
-  this.width = 250;
-  this.height = 250;
+  this.width = 270;
+  this.height = 270;
   document.onkeydown = this.onKeyDown.bind(this);
     this.img.onload = function() {
   }.bind(this);

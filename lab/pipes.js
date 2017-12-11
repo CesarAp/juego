@@ -3,7 +3,7 @@ function Pipe(canvas, x, y, width, height) {
   this.ctx = this.canvas.getContext('2d');
 
   this.img = new Image();
-  this.img.src = "images/obstacle_bottom.png";
+  this.img.src = "images/botellin.png";
   this.img.isReady = false;
   this.img.onload = function() {
     this.img.isReady = true;
