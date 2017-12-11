@@ -1,7 +1,6 @@
 function Top(canvas, x, y, width, height) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext('2d');
-
   this.img = new Image();
   this.img.src = "images/obstacle_top.png";
   this.img.isReady = false;

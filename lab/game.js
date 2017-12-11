@@ -15,6 +15,7 @@ this.elements = [];
   this.flappy = new Flappy(this.canvas);
   this.pipes =  [];
   this.top = [];
+  //this.snd = new SoundOne(this.canvas);
 
 }
 //Preguntar al respecto de la posición de las pipes
