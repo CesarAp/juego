@@ -1,3 +1,7 @@
+//Funciona pero es forzado
+//var audio = new Audio("music/siete.mp3");
+//this.audio.play();
+
 
 function Game(canvas) {
   this.canvas = canvas;
