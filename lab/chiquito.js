@@ -70,7 +70,7 @@ Flappy.prototype.collide = function(elements) {
     if (collitions[0] instanceof Flappy) {
       this.isFalling = true;
       this.fallOut();
-      setInterval(this.fallOut.bind(this), 60);
+      setInterval(this.fallOut.bind(this), 1000);
     }
 
     return true;

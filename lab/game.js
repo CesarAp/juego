@@ -15,7 +15,7 @@ this.elements = [];
   this.flappy = new Flappy(this.canvas);
   this.pipes =  [];
   this.top = [];
-  this.snd = new Sound(this.canvas);
+  //this.snd = new Audio(this.canvas);
 
 }
 //Preguntar al respecto de la posición de las pipes
@@ -60,7 +60,6 @@ addRowOfPipes: function() {
 Game.prototype.draw = function() {
   if (!this.collide()) {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
     if (this.x <= 0) {
       this.x = this.canvas.width;
     } else if(this.x > 0) {
@@ -70,6 +69,7 @@ Game.prototype.draw = function() {
     this.x -= 5;
 
     this.flappy.draw();
+
 
     for (var i = 0; i < this.pipes.length; i++) {
       this.pipes[i].draw();

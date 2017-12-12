@@ -2,7 +2,7 @@ function Sound(canvas) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext("2d");
 //He metido new Image para apañarlo
-  this.snd = new Image();
+  this.snd = new Audio();
   this.snd.src = "music/siete.mp3";
 //He usado dos técnicas para el sonido
 //la que sigue:
@@ -19,7 +19,7 @@ function Sound(canvas) {
 // Y esta otra, el problema es que Sound
 //no está definido según la consola
 //en game.js:18 sino comento se bloquea el juego
-    document.onKey = this.onKey.bind(this);
+    document.onkey = this.onKey.bind(this);
     this.snd.onload = function() {
   }.bind(this);
     }
@@ -31,4 +31,10 @@ function Sound(canvas) {
     };
 Sound.prototype.isReady = function() {
   return this.snd.isReady;
+};
+
+Sound.prototype.draw = function() {
+  if (this.snd.isReady) {
+    console.log("SOUND");
+}
 };
