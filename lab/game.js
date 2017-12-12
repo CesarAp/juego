@@ -1,6 +1,6 @@
 //Funciona pero es forzado
-//var audio = new Audio("music/siete.mp3");
-//this.audio.play();
+var audio = new Audio("music/camarero.mp3");
+this.audio.play();
 
 
 function Game(canvas) {

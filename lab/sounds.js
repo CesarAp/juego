@@ -2,7 +2,7 @@ function Sound(canvas) {
   this.canvas = canvas;
   this.ctx = this.canvas.getContext("2d");
 //He metido new Image para apañarlo
-  this.snd = new Audio();
+  this.snd = new Image();
   this.snd.src = "music/siete.mp3";
 //He usado dos técnicas para el sonido
 //la que sigue:
