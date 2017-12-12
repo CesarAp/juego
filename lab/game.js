@@ -15,7 +15,7 @@ this.elements = [];
   this.flappy = new Flappy(this.canvas);
   this.pipes =  [];
   this.top = [];
-  //this.snd = new SoundOne(this.canvas);
+  this.snd = new Sound(this.canvas);
 
 }
 //Preguntar al respecto de la posición de las pipes
@@ -34,8 +34,8 @@ Game.prototype.start = function() {
   //window.requestAnimationFrame(this.draw.bind(this));
 //};
 Game.prototype.addPipe = function() {
-  this.top.push(new Top(this.canvas, 500, -100, 150, 300));
-  this.pipes.push(new Pipe(this.canvas, 500, this.canvas.height - 300, 150, 500));
+  this.top.push(new Top(this.canvas, 500, -100, 100, 300));
+  this.pipes.push(new Pipe(this.canvas, 500, this.canvas.height - 300, 100, 500));
   //for (var i = 0; i < 8; i++)
     //  if (i != addPipe && i != addPipe + 1)
       //    this.addPipe(400, i * 60 + 10);
@@ -80,7 +80,6 @@ Game.prototype.draw = function() {
     }
     this.drawIntervalId = window.requestAnimationFrame(this.draw.bind(this));
   } else {
-    //TODO Game OVEr
     window.cancelAnimationFrame(this.drawIntervalId);
   }
 
